@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Ajith Kalisetti</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles/main.css">
+    </head>
+    <body>
+
+        <div id="container--main">
+
+            <section id="wrapper--hero" class="section--page">
+                <img id="profile-pic" src="./assets/images/profile-image.png">
+                <div>
+                    <h1 id="user-name">Ajith Kalisetti</h1>
+                    <p id="bio">DevOps Engineer</p>
+                    <p id="email">👉 ajith.kalisetti99@gmail.com</p>
+                </div>
+    
+            </section> 
+
+            <section class="section--page">
+
+                <div id="socials--list">
+                    <a href="https://medium.com/@ajith.kalisetti99" target="_blank">medium</a>
+                    <a href="https://www.linkedin.com/in/ajith-kalisetti/" target="_blank">Linkedin</a>
+                    <a href="https://github.com/ajithkalisetti" target="_blank">Github</a>
+                    <a href="./assets/KalisettiSaiAjith_2 Years.pdf" target="_blank">Download Resume</a>
+                </div>
+            </section>
+
+            <section class="section--page">
+                <h2>Certifications</h2>
+                <div style="width: 100%; display: flex; justify-content: center;">
+                    <div class="certification">
+                        <p>Certificate Name: Azure Administrator Associate</p>
+                        <p>Issuing Authority: Microsoft </p>
+                        <p>Date Earned: November 2022</p>
+                    </div>
+                    <div style="width: 40%; display: flex; justify-content: right;">
+                        <a href="https://learn.microsoft.com/api/credentials/share/en-us/AjithKalisetti-8748/10B89A2442BE8D43?sharingId=E19123A6212BEFE2" target="_blank">
+                            <img style="width: 150px;" src="./assets/images/microsoft-certified-associate-badge.svg" alt="Certificate Name">
+                        </a>
+                    </div>
+    
+                </div>
+                
+               
+            
+            </section>
+            
+            
+            <section class="section--page">
+                <h2>Skills & Qualifications</h2>
+                <ul id="qualifications--list">
+                    <li>Experience with cloud provoders: Azure, AWS</li>
+                    <li>Experience with configuration tools: ARM templates, Ansible, Terraform  </li>
+                    <li>Experience with containerization: Docker</li>
+                    <li>Experience with scripting languages: Bash, Powershell, Python</li>
+                    <li>Experience with databases: PostgresSQL, SQL, Mongo DB </li>
+                </ul>
+            </section>  
+        </div>
+
+        <script>
+            // Your JavaScript code goes here
+            const toggleButton = document.getElementById("toggle-button");
+            const body = document.body;
+    
+            toggleButton.addEventListener("click", () => {
+                body.classList.toggle("dark-mode");
+            });
+    
+            // Check if the user's preference is stored in localStorage
+            const userPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const storedMode = localStorage.getItem("mode");
+    
+            // Set the initial mode based on user preferences or stored preference
+            if (storedMode === "dark" || (userPrefersDark && !storedMode)) {
+                body.classList.add("dark-mode");
+            }
+        </script>
+
+    </body>
+</html>

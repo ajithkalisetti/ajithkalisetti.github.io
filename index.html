@@ -1,88 +1,870 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Ajith Kalisetti</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./styles/main.css">
-    </head>
-    <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalisetti Sai Ajith | DevOps Engineer</title>
+    <style>
+        :root {
+            --primary-teal: #32b8c6;
+            --dark-bg: #0a0e27;
+            --darker-bg: #070b1f;
+            --text-light: #e8e8e8;
+            --text-gray: #a0a0a0;
+            --accent-blue: #4a9eff;
+            --accent-orange: #ff6b35;
+            --card-bg: rgba(26, 32, 56, 0.8);
+        }
 
-        <div id="container--main">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            <section id="wrapper--hero" class="section--page">
-                <img id="profile-pic" src="./assets/images/profile-image.png">
-                <div>
-                    <h1 id="user-name">Ajith Kalisetti</h1>
-                    <p id="bio">DevOps Engineer</p>
-                    <p id="email"> ✉ ajith.kalisetti99@gmail.com</p>
-                </div>
-    
-            </section> 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-            <section class="section--page">
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+        }
 
-                <div id="socials--list">
-                    <a href="https://medium.com/@ajith.kalisetti99" target="_blank">medium</a>
-                    <a href="https://www.linkedin.com/in/ajith-kalisetti/" target="_blank">Linkedin</a>
-                    <a href="https://github.com/ajithkalisetti" target="_blank">Github</a>
-                    <a href="./assets/KalisettiSaiAjith_2 Years.pdf" target="_blank">Download Resume</a>
-                </div>
-            </section>
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(74, 158, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(50, 184, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
 
-            <section class="section--page">
-                <h2>Certifications</h2>
-                <div style="width: 100%; display: flex; justify-content: center;">
-                    <div class="certification">
-                        <p>Certificate Name: Azure Administrator Associate</p>
-                        <p>Issuing Authority: Microsoft </p>
-                        <p>Date Earned: November 2022</p>
-                    </div>
-                    <div style="width: 40%; display: flex; justify-content: right;">
-                        <a href="https://learn.microsoft.com/api/credentials/share/en-us/AjithKalisetti-8748/10B89A2442BE8D43?sharingId=E19123A6212BEFE2" target="_blank">
-                            <img style="width: 150px;" src="./assets/images/microsoft-certified-associate-badge.svg" alt="Certificate Name">
-                        </a>
-                    </div>
-    
-                </div>
-                
-               
-            
-            </section>
-            
-            
-            <section class="section--page">
-                <h2>Skills & Qualifications</h2>
-                <ul id="qualifications--list">
-                    <li>Experience with cloud provoders: Azure, AWS</li>
-                    <li>Experience with configuration tools: ARM templates, Ansible, Terraform  </li>
-                    <li>Experience with containerization: Docker</li>
-                    <li>Experience with scripting languages: Bash, Powershell, Python</li>
-                    <li>Experience with databases: PostgresSQL, SQL, Mongo DB </li>
-                </ul>
-            </section>  
-        </div>
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
 
-        <script>
-            // Your JavaScript code goes here
-            const toggleButton = document.getElementById("toggle-button");
-            const body = document.body;
-    
-            toggleButton.addEventListener("click", () => {
-                body.classList.toggle("dark-mode");
-            });
-    
-            // Check if the user's preference is stored in localStorage
-            const userPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-            const storedMode = localStorage.getItem("mode");
-    
-            // Set the initial mode based on user preferences or stored preference
-            if (storedMode === "dark" || (userPrefersDark && !storedMode)) {
-                body.classList.add("dark-mode");
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-teal);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-teal);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary-teal);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-teal), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text h2 {
+            font-size: 2rem;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border-radius: 50%;
+            color: var(--primary-teal);
+            text-decoration: none;
+            border: 2px solid var(--primary-teal);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-teal);
+            color: var(--dark-bg);
+            transform: translateY(-5px);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(50, 184, 198, 0.3);
+            border: 3px solid var(--primary-teal);
+        }
+
+        .floating-tech {
+            position: absolute;
+            background: var(--card-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            border: 2px solid var(--primary-teal);
+            animation: float-tech 3s ease-in-out infinite;
+        }
+
+        .tech-1 { top: 10%; right: -10%; animation-delay: 0s; }
+        .tech-2 { bottom: 20%; left: -15%; animation-delay: 1s; }
+        .tech-3 { top: 50%; right: -20%; animation-delay: 2s; }
+
+        @keyframes float-tech {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-        </script>
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    </body>
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-teal), var(--accent-blue));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary-teal);
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--primary-teal);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--text-gray);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary-teal);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(50, 184, 198, 0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-teal);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.5rem 0;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category li::before {
+            content: '▹';
+            color: var(--primary-teal);
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary-teal), var(--accent-blue));
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.6rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-teal);
+            border: 4px solid var(--dark-bg);
+        }
+
+        .timeline-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-teal);
+            transition: all 0.3s;
+        }
+
+        .timeline-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(50, 184, 198, 0.2);
+        }
+
+        .timeline-card h3 {
+            color: var(--primary-teal);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-card .company {
+            color: var(--accent-blue);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-card .period {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-card ul {
+            list-style: none;
+            color: var(--text-gray);
+        }
+
+        .timeline-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-teal);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary-teal);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(50, 184, 198, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--primary-teal);
+            margin-bottom: 1rem;
+        }
+
+        .project-content p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(50, 184, 198, 0.2);
+            color: var(--primary-teal);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--primary-teal);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-content p {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: transparent;
+            color: var(--primary-teal);
+            border: 2px solid var(--primary-teal);
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: var(--primary-teal);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(50, 184, 198, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-gray);
+            border-top: 1px solid rgba(50, 184, 198, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .floating-tech {
+                display: none;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Ajith Kalisetti</a>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Kalisetti Sai Ajith</h1>
+                <h2>DevOps Engineer</h2>
+                <p>Microsoft Certified Azure Administrator with 4+ years of experience in DevOps and Cloud Engineering. Passionate about automation, CI/CD, and building scalable infrastructure.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/ajith-kalisetti" target="_blank" title="LinkedIn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/ajithkalisetti" target="_blank" title="GitHub">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://medium.com/@ajith.kalisetti99" target="_blank" title="Medium">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7dd78d79-451d-4f86-8b6f-df95775baa3f" alt="Kalisetti Sai Ajith" style="object-fit: cover; object-position: center top; height: 500px;">
+                <div class="floating-tech tech-1">🐳 Docker</div>
+                <div class="floating-tech tech-2">☸️ Kubernetes</div>
+                <div class="floating-tech tech-3">⚡ Terraform</div>
+                <div class="floating-tech tech-4">🐧 Linux</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="fade-in">About Me</h2>
+        <div class="about-content fade-in">
+            <div class="about-text">
+                <p>I'm a passionate DevOps Engineer with a strong background in cloud computing, automation, and infrastructure management. Currently working at KORE.AI as a Cloud Support Engineer, I specialize in AWS and Azure cloud platforms.</p>
+                <p>My journey in tech has equipped me with expertise in CI/CD pipelines, containerization, Kubernetes orchestration, and infrastructure as code. I'm committed to reducing manual effort, optimizing deployment processes, and maintaining high system availability.</p>
+                <p>Certified Microsoft Azure Administrator (AZ-104) with hands-on experience in managing multi-tier microservices applications across development and production environments.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>4+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-card">
+                    <h3>30%</h3>
+                    <p>Deployment Time Reduced</p>
+                </div>
+                <div class="stat-card">
+                    <h3>90%</h3>
+                    <p>Manual Effort Reduced</p>
+                </div>
+                <div class="stat-card">
+                    <h3>1</h3>
+                    <p>Azure Certification</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="fade-in">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category fade-in">
+                <h3>☁️ Cloud Platforms</h3>
+                <ul>
+                    <li>AWS (EC2, S3, VPC, IAM)</li>
+                    <li>Microsoft Azure</li>
+                </ul>
+            </div>
+            <div class="skill-category fade-in">
+                <h3>🔄 CI/CD</h3>
+                <ul>
+                    <li>Jenkins</li>
+                    <li>Azure DevOps</li>
+                </ul>
+            </div>
+            <div class="skill-category fade-in">
+                <h3>🐳 Containerization</h3>
+                <ul>
+                    <li>Docker</li>
+                    <li>Kubernetes</li>
+                </ul>
+            </div>
+            <div class="skill-category fade-in">
+                <h3>⚙️ IaC & Config</h3>
+                <ul>
+                    <li>Terraform</li>
+                    <li>Ansible</li>
+                </ul>
+            </div>
+            <div class="skill-category fade-in">
+                <h3>📊 Monitoring</h3>
+                <ul>
+                    <li>Prometheus</li>
+                    <li>Grafana</li>
+                    <li>Datadog</li>
+                </ul>
+            </div>
+            <div class="skill-category fade-in">
+                <h3>💻 Scripting</h3>
+                <ul>
+                    <li>Bash/Shell</li>
+                    <li>Python</li>
+                </ul>
+            </div>
+            <div class="skill-category fade-in">
+                <h3>🔧 Version Control</h3>
+                <ul>
+                    <li>Git</li>
+                    <li>GitHub</li>
+                    <li>Azure Repos</li>
+                </ul>
+            </div>
+            <div class="skill-category fade-in">
+                <h3>💾 Databases</h3>
+                <ul>
+                    <li>PostgreSQL</li>
+                    <li>SQL</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="fade-in">Work Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-card">
+                    <h3>Cloud Support Engineer (DevOps)</h3>
+                    <div class="company">KORE.AI</div>
+                    <div class="period">November 2023 - Present | Hyderabad, India</div>
+                    <ul>
+                        <li>Managed AWS services including EC2, S3, Load Balancers, Auto Scaling, and VPC</li>
+                        <li>Developed and maintained Jenkins CI/CD pipelines, automating deployments across multiple environments</li>
+                        <li>Designed and deployed Kubernetes clusters in production with optimized networking and Ingress controllers</li>
+                        <li>Implemented Infrastructure as Code using Terraform and Ansible</li>
+                        <li>Set up comprehensive monitoring with Datadog, Prometheus, and Grafana</li>
+                        <li>Automated daily backups to S3 with alerting mechanisms</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-card">
+                    <h3>DevOps Engineer</h3>
+                    <div class="company">Motivity Labs</div>
+                    <div class="period">July 2021 - November 2023 | Hyderabad, India</div>
+                    <ul>
+                        <li>Configured Azure infrastructure including VMs, Storage Accounts, PostgreSQL, and Key Vaults</li>
+                        <li>Containerized applications using Docker and orchestrated with Kubernetes</li>
+                        <li>Developed Azure DevOps pipelines implementing 'build once, deploy multiple' strategy</li>
+                        <li>Led VM and database migrations with minimal downtime</li>
+                        <li>Managed and optimized PostgreSQL databases</li>
+                        <li>Implemented comprehensive monitoring using Azure Monitor and Log Analytics</li>
+                        <li>Collaborated with cross-functional teams to implement DevOps best practices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="fade-in">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&q=80" alt="CI/CD Pipeline" class="project-image">
+                <div class="project-content">
+                    <h3>Multi-Environment CI/CD Pipeline</h3>
+                    <p>Automated deployment pipeline using Jenkins for Dev, QA, Staging, and Production environments, reducing deployment time by 30%.</p>
+                    <div class="project-tags">
+                        <span class="tag">Jenkins</span>
+                        <span class="tag">Bash</span>
+                        <span class="tag">Groovy</span>
+                        <span class="tag">AWS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" alt="Infrastructure as Code" class="project-image">
+                <div class="project-content">
+                    <h3>Infrastructure as Code Implementation</h3>
+                    <p>Implemented comprehensive IaC solution using Terraform and Ansible, reducing manual infrastructure provisioning effort by 90%.</p>
+                    <div class="project-tags">
+                        <span class="tag">Terraform</span>
+                        <span class="tag">Ansible</span>
+                        <span class="tag">AWS</span>
+                        <span class="tag">Azure</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80" alt="Cloud Migration" class="project-image">
+                <div class="project-content">
+                    <h3>Cloud Migration Project</h3>
+                    <p>Led successful VM and database migration from on-premise to cloud with zero data loss and minimal downtime.</p>
+                    <div class="project-tags">
+                        <span class="tag">Azure</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">Migration</span>
+                        <span class="tag">DevOps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="fade-in">Get In Touch</h2>
+        <div class="contact-content fade-in">
+            <p>I'm always interested in hearing about new opportunities and collaborations. Whether you have a question or just want to say hi, feel free to reach out!</p>
+            <a href="mailto:ajith.kalisetti99@gmail.com" class="contact-btn">Say Hello</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Kalisetti Sai Ajith. Built with passion for DevOps.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
 </html>
